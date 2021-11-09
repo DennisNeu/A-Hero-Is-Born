@@ -9,6 +9,8 @@ public class PlayerBehaviour : MonoBehaviour
     public float jumpVelocity = 5f;
     public float distanceToGround = 0.1f;
     public LayerMask groundLayer;
+    public GameObject bullet;
+    public float bulletSpeed = 100f;
 
 
     private float vInput;
@@ -43,6 +45,14 @@ public class PlayerBehaviour : MonoBehaviour
         Quaternion angleRot = Quaternion.Euler(rotation * Time.deltaTime);
         rb.MovePosition(transform.position + transform.forward * vInput * Time.fixedDeltaTime);
         rb.MoveRotation(rb.rotation * angleRot);
+
+        if (Input.GetMouseButtonDown(0)) {
+            GameObject newBullet = Instantiate(bullet, this.transform.position + new Vector3(1, 0, 0), this.transform.rotation) as GameObject;
+
+            Rigidbody bulletRB = newBullet.GetComponent<Rigidbody>();
+
+            bulletRB.velocity = this.transform.forward * bulletSpeed;
+        }
     }
 
     private bool IsGrounded() {
