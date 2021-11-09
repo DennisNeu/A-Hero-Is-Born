@@ -1195,7 +1195,7 @@ PrefabInstance:
     - target: {fileID: 7253947008146116741, guid: 42215d0e63d28d148b6498473763e292,
         type: 3}
       propertyPath: m_Name
-      value: Barrier 01 (1)
+      value: Barrier 04
       objectReference: {fileID: 0}
     - target: {fileID: 7253947008146116741, guid: 42215d0e63d28d148b6498473763e292,
         type: 3}
