@@ -36,7 +36,6 @@ public class PlayerBehaviour : MonoBehaviour
 
         if (IsGrounded() && Input.GetKeyDown(KeyCode.Space)) {
             rb.AddForce(Vector3.up * jumpVelocity, ForceMode.Impulse);
-            Debug.Log("Space pressed!");
         }
     }
 
