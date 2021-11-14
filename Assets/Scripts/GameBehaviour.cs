@@ -12,6 +12,10 @@ public class GameBehaviour : MonoBehaviour
 
     private bool showLossScreen = false;
 
+    private float timeSinceStart = 0f;
+    private float elapsedTime = 0f;
+    private float bestTime = 0;
+
     private int _itemsCollected = 0;
     public int Items {
         get {
@@ -31,7 +35,7 @@ public class GameBehaviour : MonoBehaviour
             }
         }
     }
-    private int _playerHP = 3;
+    private int _playerHP = 1;
     public int HP {
         get {
             return _playerHP;
@@ -51,10 +55,25 @@ public class GameBehaviour : MonoBehaviour
         }
     }
 
+    private void Start() {
+        timeSinceStart = Time.time;
+        if (PlayerPrefs.HasKey("bestTime")) {
+            bestTime = PlayerPrefs.GetFloat("bestTime");
+        }
+    }
+
+    private void Update() {
+        elapsedTime = Time.time - timeSinceStart;
+    }
+
     private void OnGUI() {
         GUI.Box(new Rect(20, 20, 150, 25), "Player Health: " + _playerHP);
 
         GUI.Box(new Rect(20, 50, 150, 25), "Items collected: " + _itemsCollected);
+
+        GUI.Box(new Rect(20, 80, 150, 25), string.Format("Time: {0,6:0.0} sec.", elapsedTime));
+
+        GUI.Box(new Rect(20, 110, 150, 25), string.Format("Best time: {0,6:0.0} sec.", bestTime));
 
         GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height - 50, 300, 50), labelText);
 
@@ -64,6 +83,12 @@ public class GameBehaviour : MonoBehaviour
                 SceneManager.LoadScene(0);
 
                 Time.timeScale = 1.0f;
+
+                if (elapsedTime < bestTime || bestTime == 0) {
+                    bestTime = elapsedTime;
+                    PlayerPrefs.SetFloat("bestTime", bestTime);
+                    PlayerPrefs.Save();
+                }
             }
         }
 
