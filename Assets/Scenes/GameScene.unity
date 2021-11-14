@@ -2426,6 +2426,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 9171044517640608960, guid: 2cb844bf311a80449b8741ef521ca4c4,
+        type: 3}
+      propertyPath: patrolRoute
+      value: 
+      objectReference: {fileID: 856610850}
     - target: {fileID: 9171044517640608961, guid: 2cb844bf311a80449b8741ef521ca4c4,
         type: 3}
       propertyPath: m_Name
@@ -2439,7 +2444,7 @@ PrefabInstance:
     - target: {fileID: 9171044517640608975, guid: 2cb844bf311a80449b8741ef521ca4c4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 13.92
       objectReference: {fileID: 0}
     - target: {fileID: 9171044517640608975, guid: 2cb844bf311a80449b8741ef521ca4c4,
         type: 3}
@@ -2449,7 +2454,7 @@ PrefabInstance:
     - target: {fileID: 9171044517640608975, guid: 2cb844bf311a80449b8741ef521ca4c4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -14.39
+      value: 0.23
       objectReference: {fileID: 0}
     - target: {fileID: 9171044517640608975, guid: 2cb844bf311a80449b8741ef521ca4c4,
         type: 3}
