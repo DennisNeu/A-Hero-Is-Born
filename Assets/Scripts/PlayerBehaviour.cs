@@ -15,6 +15,8 @@ public class PlayerBehaviour : MonoBehaviour
 
     private float vInput;
     private float hInput;
+    private bool fireBullet = false;
+    private bool timeToJump = false;
 
     private Rigidbody rb;
     private CapsuleCollider col;
@@ -38,8 +40,11 @@ public class PlayerBehaviour : MonoBehaviour
        */
 
         if (IsGrounded() && Input.GetKeyDown(KeyCode.Space)) {
-            rb.AddForce(Vector3.up * jumpVelocity, ForceMode.Impulse);
+            timeToJump = true;
         }
+
+        //fixed updates can miss button inputs, best to check for inputs in update!
+        if (Input.GetMouseButtonDown(0)) fireBullet = true;
     }
 
     private void FixedUpdate() {
@@ -48,12 +53,19 @@ public class PlayerBehaviour : MonoBehaviour
         rb.MovePosition(transform.position + transform.forward * vInput * Time.fixedDeltaTime);
         rb.MoveRotation(rb.rotation * angleRot);
 
-        if (Input.GetMouseButtonDown(0)) {
+        if (fireBullet) {
             GameObject newBullet = Instantiate(bullet, this.transform.position + new Vector3(1, 0, 0), this.transform.rotation) as GameObject;
 
             Rigidbody bulletRB = newBullet.GetComponent<Rigidbody>();
 
             bulletRB.velocity = this.transform.forward * bulletSpeed;
+
+            fireBullet = false;
+        }
+
+        if (timeToJump) {
+            rb.AddForce(Vector3.up * jumpVelocity, ForceMode.Impulse);
+            timeToJump = false;
         }
     }
 

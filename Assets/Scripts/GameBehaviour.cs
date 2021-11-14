@@ -60,11 +60,11 @@ public class GameBehaviour : MonoBehaviour
 
         if (showWinScreen) {
 
-            if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 50, 200, 100), "YOU WON!!"));
+            if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 50, 200, 100), "YOU WON!!")) {
+                SceneManager.LoadScene(0);
 
-            SceneManager.LoadScene(0);
-
-            Time.timeScale = 1.0f;
+                Time.timeScale = 1.0f;
+            }
         }
 
         if (showLossScreen) {
