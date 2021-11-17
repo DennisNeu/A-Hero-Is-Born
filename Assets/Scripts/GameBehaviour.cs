@@ -57,6 +57,7 @@ public class GameBehaviour : MonoBehaviour
 
     private void Start() {
         timeSinceStart = Time.time;
+        //check if a bestTime is already saved
         if (PlayerPrefs.HasKey("bestTime")) {
             bestTime = PlayerPrefs.GetFloat("bestTime");
         }
@@ -75,7 +76,7 @@ public class GameBehaviour : MonoBehaviour
 
         GUI.Box(new Rect(20, 110, 150, 25), string.Format("Best time: {0,6:0.0} sec.", bestTime));
 
-        GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height - 50, 300, 50), labelText);
+        GUI.Box(new Rect(Screen.width / 2 - 100, Screen.height - 50, 300, 25), labelText);
 
         if (showWinScreen) {
 
@@ -84,6 +85,7 @@ public class GameBehaviour : MonoBehaviour
 
                 Time.timeScale = 1.0f;
 
+                //if elapsedTime is smaller then bestTime or bestTime is 0, save elapsedTime as new bestTime
                 if (elapsedTime < bestTime || bestTime == 0) {
                     bestTime = elapsedTime;
                     PlayerPrefs.SetFloat("bestTime", bestTime);
